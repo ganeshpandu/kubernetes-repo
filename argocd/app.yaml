@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ganeshpandu/kubernetes-repo
     targetRevision: HEAD
-    path: .
+    path: app-manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: demo
