@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx-environments
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/ganeshpandu/kubernetes-repo
+      revision: HEAD
+      directories:
+      - path: app-manifests/*
+
+  template:
+    metadata:
+      name: nginx-{{path.basename}}
+
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/ganeshpandu/kubernetes-repo
+        targetRevision: HEAD
+        path: app-manifests/{{path.basename}}
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{path.basename}}
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
