@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: presync-check
+  namespace: dev
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: presync
+        image: busybox
+        command:
+        - sh
+        - -c
+        - "echo Running PreSync validation... && sleep 10"
+      restartPolicy: Never
+  backoffLimit: 1
