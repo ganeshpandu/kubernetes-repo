@@ -13,7 +13,7 @@ spec:
 
   template:
     metadata:
-      name: nginx-{{path.basename}}
+      name: "nginx-{{path.basename}}"
 
     spec:
       project: default
@@ -21,11 +21,11 @@ spec:
       source:
         repoURL: https://github.com/ganeshpandu/kubernetes-repo
         targetRevision: HEAD
-        path: app-manifests/{{path.basename}}
+        path: "app-manifests/{{path.basename}}"
 
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{path.basename}}
+        namespace: "{{path.basename}}"
 
       syncPolicy:
         automated:
