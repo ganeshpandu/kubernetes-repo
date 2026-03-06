@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  namespace: demo
+  namespace: dev
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
